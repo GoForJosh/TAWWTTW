@@ -6,7 +6,7 @@ export const dynasty = true; // true for dynasty leagues, false for redraft and 
 export const enableBlog = false; // requires VITE_CONTENTFUL_ACCESS_TOKEN and VITE_CONTENTFUL_SPACE environment variables
 
 /*   STEP 2   */
-export const homepageText = ```javascript
+export const homepageText =
 const LEAGUE_ID = '942150074421862400';  // Sleeper league ID for the transmission data
 const TRANSACTIONS_URL = `https://api.sleeper.app/v1/league/${LEAGUE_ID}/transactions`;  // URL for the Sleeper API endpoint that returns the league transactions
 
