@@ -6,14 +6,35 @@ export const dynasty = true; // true for dynasty leagues, false for redraft and 
 export const enableBlog = false; // requires VITE_CONTENTFUL_ACCESS_TOKEN and VITE_CONTENTFUL_SPACE environment variables
 
 /*   STEP 2   */
-export const homepageText = `
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-`;
+export const homepageText = ```javascript
+const LEAGUE_ID = '942150074421862400';  // Sleeper league ID for the transmission data
+const TRANSACTIONS_URL = `https://api.sleeper.app/v1/league/${LEAGUE_ID}/transactions`;  // URL for the Sleeper API endpoint that returns the league transactions
+
+async function createTransactionSummary() {
+	try {
+		// Send the GET request to the Sleeper API
+		const response = await fetch(TRANSACTIONS_URL);
+		const data = await response.json();
+
+		// Extract the details of the 10 most recent transactions
+		const recentTransactions = data.slice(0, 10);
+
+		// Create a string that summarizes the transactions
+		let summary = '';
+		for (const transaction of recentTransactions) {
+			summary += `Transaction ID: ${transaction.transaction_id} - Type: ${transaction.type}\n`;
+		}
+
+		console.log(summary);  // Display the summary on the console
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+setInterval(() => {
+	createTransactionSummary();
+}, 86400000);  // Call the createTransactionSummary function every day
+```
 
 /*   STEP 3   */
 /*
