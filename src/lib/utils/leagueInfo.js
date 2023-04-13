@@ -7,7 +7,8 @@ export const enableBlog = false; // requires VITE_CONTENTFUL_ACCESS_TOKEN and VI
 
 /*   STEP 2   */
 export const homepageText =
-const LEAGUE_ID = '942150074421862400';  // Sleeper league ID for the transmission data
+
+LEAGUE_ID = '942150074421862400';  // Sleeper league ID for the transmission data
 const TRANSACTIONS_URL = `https://api.sleeper.app/v1/league/${LEAGUE_ID}/transactions`;  // URL for the Sleeper API endpoint that returns the league transactions
 
 async function createTransactionSummary() {
